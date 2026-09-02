@@ -97,3 +97,4 @@ components/           Shared UI (buttons, cards, nav) and design tokens
 lib/                   Supabase client + auth hook
 supabase/              schema.sql (run first) + seed.sql (demo data)
 ```
+"# souknstory-app" 
