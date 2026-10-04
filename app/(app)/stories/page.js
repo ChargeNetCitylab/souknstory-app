@@ -19,7 +19,7 @@ export default function StoriesPage() {
         <ScreenHeader title="Stories" subtitle="The people behind the places." onBack={() => router.push("/")} />
         <div className="p-5">
           {stories.length === 0 && (
-            <p className="font-body text-sm text-muted italic">No stories yet — run supabase/seed.sql or add one from the admin dashboard.</p>
+            <p className="font-body text-sm text-muted italic">Stories from our partners across Morocco are coming soon.</p>
           )}
           {stories.map((s) => <StoryCard key={s.id} story={s} />)}
         </div>

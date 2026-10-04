@@ -65,7 +65,7 @@ export default function HiddenMoroccoPage() {
         <div className="p-5">
           {filtered.length === 0 && (
             <div className="font-body text-[#B0A98F] italic">
-              Nothing here yet — run supabase/seed.sql for demo content, or add real verified listings via the business portal.
+              New verified places are coming soon.
             </div>
           )}
           {filtered.map((l) => (
