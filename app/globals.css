@@ -1,14 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&family=Amiri:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html, body {
-  background: #FBF8F1;
-  color: #221E1B;
+  background: #F5F0E6;
+  color: #16191F;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* Arch-shaped photo frame used across the website. */
+.arch {
+  border-radius: 50% 50% 0 0 / 39% 39% 0 0;
 }
