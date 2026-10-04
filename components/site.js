@@ -38,7 +38,7 @@ export function SiteHeader() {
         <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[15px]">
           <Link href="/#journeys" className="text-ivory no-underline hover:text-gold">Journeys</Link>
           <Link href="/departures" className="text-ivory no-underline hover:text-gold">Departures</Link>
-          <Link href="/#tiers" className="text-ivory no-underline hover:text-gold">Pricing</Link>
+          <Link href="/#packages" className="text-ivory no-underline hover:text-gold">Packages</Link>
           <Link href="/stories" className="text-ivory no-underline hover:text-gold">Stories</Link>
           <Link href="/partners" className="text-ivory no-underline hover:text-gold">Partners</Link>
           <Link href="/onboarding" className="bg-gold text-night px-5 py-3 font-semibold no-underline hover:brightness-110">

@@ -9,6 +9,8 @@ import { formatDate, addDays } from "@/lib/departures";
 
 const THEMES = [
   { value: "first-story", label: "The First Story (small group)" },
+  { value: "the-grand-story", label: "The Grand Story (private)" },
+  { value: "the-private-story", label: "The Private Story" },
   ...JOURNEYS.map((j) => ({ value: j.slug, label: j.title })),
   { value: "tailor-made", label: "Something tailor-made" },
 ];

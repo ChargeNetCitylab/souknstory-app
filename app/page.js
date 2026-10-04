@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container, Eyebrow, H2, SiteHeader, SiteFooter, ArchImage, TintBlock } from "@/components/site";
-import { JOURNEYS, TIERS, priceLabel } from "@/lib/journeys";
+import { JOURNEYS, priceLabel } from "@/lib/journeys";
+import { PACKAGES, usd } from "@/lib/packages";
 import { SITE, whatsappLink } from "@/lib/site";
 
 export default function HomePage() {
@@ -20,7 +21,7 @@ export default function HomePage() {
         <SiteHeader />
         <Container className="pt-16 pb-20 grid gap-14 items-center md:grid-cols-2">
           <div className="flex flex-col gap-6">
-            <Eyebrow light>Private, tailor-made journeys to Morocco</Eyebrow>
+            <Eyebrow light>Luxury journeys to Morocco · small groups and private</Eyebrow>
             <h1 className="font-serif font-medium text-[52px] md:text-[88px] leading-[0.98] m-0">
               Morocco, designed around you.
             </h1>
@@ -29,11 +30,11 @@ export default function HomePage() {
               detail in between, designed by a Moroccan American who knows both homes.
             </p>
             <div className="flex flex-wrap gap-3.5 pt-1.5">
-              <Link href="/onboarding" className="bg-gold text-night px-7 py-4 font-semibold no-underline hover:brightness-110">
-                Design my journey
+              <Link href="#packages" className="bg-gold text-night px-7 py-4 font-semibold no-underline hover:brightness-110">
+                Explore the packages
               </Link>
-              <Link href="#journeys" className="border border-ivory text-ivory px-7 py-4 font-medium no-underline hover:bg-ivory hover:text-night">
-                Explore journeys
+              <Link href="/departures" className="border border-ivory text-ivory px-7 py-4 font-medium no-underline hover:bg-ivory hover:text-night">
+                See 2027 departures
               </Link>
             </div>
           </div>
@@ -51,13 +52,53 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Packages */}
+      <section id="packages">
+        <Container className="py-24 flex flex-col gap-11">
+          <div className="flex flex-wrap justify-between items-end gap-6">
+            <div className="flex flex-col gap-3 max-w-[660px]">
+              <Eyebrow>Three ways to live the story</Eyebrow>
+              <H2>One journey. Marrakech, the High Atlas and the desert.</H2>
+            </div>
+            <p className="text-base leading-relaxed text-stone max-w-[380px] m-0">
+              Eight days, five to seven wow moments, from a small group to a story written only for you.
+            </p>
+          </div>
+          <div className="grid gap-6 md:grid-cols-3 items-stretch">
+            {PACKAGES.map((p, i) => (
+              <div key={p.slug} className={`${i === 1 ? "bg-night text-ivory outline outline-1 outline-gold -outline-offset-8" : "bg-white border border-line"} p-8 flex flex-col gap-4`}>
+                <span className={`text-xs tracking-[0.18em] uppercase font-semibold ${i === 1 ? "text-gold" : "text-brass"}`}>{p.tier}</span>
+                <span className="font-serif font-semibold text-[36px] leading-none">{p.name}</span>
+                <span className={`font-serif italic text-[19px] leading-snug ${i === 1 ? "text-mist" : "text-stone"}`}>{p.tagline}</span>
+                <div className={`border-t ${i === 1 ? "border-[#3A404B]" : "border-line"}`} />
+                <ul className="flex flex-col gap-2 text-[15px] leading-snug flex-grow list-none p-0 m-0">
+                  <li>{p.format}</li>
+                  {p.highlights.map((h) => <li key={h}>{h}</li>)}
+                </ul>
+                <div className="flex flex-col">
+                  <span className={`text-xs tracking-[0.14em] uppercase ${i === 1 ? "text-mist" : "text-stone"}`}>From, per person</span>
+                  <span className="font-serif text-[40px] leading-none">{usd(p.price)}</span>
+                </div>
+                <Link href={`/packages/${p.slug}`} className={`text-center py-3.5 font-semibold no-underline ${i === 1 ? "bg-gold text-night" : "border border-night text-night hover:bg-night hover:text-ivory"}`}>
+                  See the day by day
+                </Link>
+              </div>
+            ))}
+          </div>
+          <p className="text-sm text-stone m-0">
+            Land prices per person, two sharing. Flights from your city are quoted separately. The First Story runs every
+            Saturday from March 2027; <Link href="/departures" className="text-brass font-semibold">see the dates</Link>.
+          </p>
+        </Container>
+      </section>
+
       {/* Journeys */}
       <section id="journeys">
         <Container className="py-24 flex flex-col gap-11">
           <div className="flex flex-wrap justify-between items-end gap-6">
             <div className="flex flex-col gap-3 max-w-[640px]">
-              <Eyebrow>Signature journeys</Eyebrow>
-              <H2>Choose a story. We'll tailor every day of it.</H2>
+              <Eyebrow>Private themed journeys</Eyebrow>
+              <H2>Prefer another route? Choose a theme.</H2>
             </div>
             <p className="text-base leading-relaxed text-stone max-w-[380px] m-0">
               Every journey is private and fully customizable: length, pace, hotels and flights.
@@ -89,21 +130,6 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* Small-group departures */}
-      <section className="bg-night text-ivory">
-        <Container className="py-16 flex flex-wrap items-center justify-between gap-8">
-          <div className="flex flex-col gap-3 max-w-[620px]">
-            <Eyebrow light>Small-group departures · every Saturday</Eyebrow>
-            <h2 className="font-serif font-medium text-[38px] md:text-[52px] leading-[1.02] m-0">The First Story, from $3,290</h2>
-            <p className="text-mist text-[17px] leading-relaxed m-0">
-              Eight days from Marrakech to the High Atlas and the Agafay desert, with up to 12 guests and five
-              wow moments included. Founding departures in spring 2027.
-            </p>
-          </div>
-          <Link href="/departures" className="bg-gold text-night px-7 py-4 font-semibold no-underline">See 2027 dates</Link>
-        </Container>
-      </section>
-
       {/* How it works */}
       <section className="bg-white">
         <Container className="py-24 flex flex-col gap-11">
@@ -123,47 +149,6 @@ export default function HomePage() {
                 <span className="text-base leading-relaxed text-stone">{b}</span>
               </div>
             ))}
-          </div>
-        </Container>
-      </section>
-
-      {/* Tiers */}
-      <section id="tiers">
-        <Container className="py-24 flex flex-col gap-11">
-          <div className="flex flex-col gap-3 items-center text-center">
-            <Eyebrow>Ways to travel</Eyebrow>
-            <H2>Three levels of luxury.</H2>
-            <p className="text-base text-stone m-0">
-              Every journey comes in three levels. Flights from your city are quoted separately or bundled.
-            </p>
-          </div>
-          <div className="grid gap-6 md:grid-cols-3 items-stretch">
-            {TIERS.map((t) =>
-              t.featured ? (
-                <div key={t.key} className="bg-night text-ivory p-9 flex flex-col gap-4 outline outline-1 outline-gold -outline-offset-8">
-                  <span className="text-xs tracking-[0.18em] uppercase text-gold font-semibold">Most requested</span>
-                  <span className="font-serif font-semibold text-[34px]">{t.name}</span>
-                  <div className="border-t border-[#3A404B]" />
-                  <ul className="flex flex-col gap-2.5 text-[15px] leading-snug flex-grow list-none p-0 m-0">
-                    {t.features.map((f) => <li key={f}>{f}</li>)}
-                  </ul>
-                  <Link href="/onboarding" className="text-center bg-gold text-night py-3.5 font-semibold no-underline">
-                    Plan a {t.name} trip
-                  </Link>
-                </div>
-              ) : (
-                <div key={t.key} className="bg-white border border-line p-9 flex flex-col gap-4">
-                  <span className="font-serif font-semibold text-[34px]">{t.name}</span>
-                  <div className="border-t border-line" />
-                  <ul className="flex flex-col gap-2.5 text-[15px] leading-snug flex-grow list-none p-0 m-0">
-                    {t.features.map((f) => <li key={f}>{f}</li>)}
-                  </ul>
-                  <Link href="/onboarding" className="text-center border border-night text-night py-3.5 font-medium no-underline hover:bg-night hover:text-ivory">
-                    Plan a {t.name} trip
-                  </Link>
-                </div>
-              )
-            )}
           </div>
         </Container>
       </section>
@@ -220,7 +205,8 @@ export default function HomePage() {
               {[
                 ["When is the best time to go?", "Spring and autumn suit most journeys. Desert nights are cold in winter, and summer inland is very hot. We'll advise for your route."],
                 ["Can you book flights from my city?", "Yes. We quote options from your nearest airport in the cabin you prefer, or you can book your own."],
-                ["Can I change a journey?", "Always. Every journey is private, so we adjust days, hotels and pace to suit you."],
+                ["How do I book and pay?", "A $500 deposit per traveler holds your place. The balance is paid in two parts, 90 and 60 days before you travel, by bank transfer or card."],
+                ["Can I change a journey?", "Private journeys can be changed in every detail. Small-group departures follow a set route, but we can add nights before or after."],
               ].map(([q, a]) => (
                 <div key={q} className="border-t border-line py-3.5 flex flex-col gap-1.5">
                   <span className="text-[17px] font-semibold">{q}</span>
