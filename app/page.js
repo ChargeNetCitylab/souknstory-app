@@ -89,6 +89,21 @@ export default function HomePage() {
         </Container>
       </section>
 
+      {/* Small-group departures */}
+      <section className="bg-night text-ivory">
+        <Container className="py-16 flex flex-wrap items-center justify-between gap-8">
+          <div className="flex flex-col gap-3 max-w-[620px]">
+            <Eyebrow light>Small-group departures · every Saturday</Eyebrow>
+            <h2 className="font-serif font-medium text-[38px] md:text-[52px] leading-[1.02] m-0">The First Story, from $3,290</h2>
+            <p className="text-mist text-[17px] leading-relaxed m-0">
+              Eight days from Marrakech to the High Atlas and the Agafay desert, with up to 12 guests and five
+              wow moments included. Founding departures in spring 2027.
+            </p>
+          </div>
+          <Link href="/departures" className="bg-gold text-night px-7 py-4 font-semibold no-underline">See 2027 dates</Link>
+        </Container>
+      </section>
+
       {/* How it works */}
       <section className="bg-white">
         <Container className="py-24 flex flex-col gap-11">

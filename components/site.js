@@ -37,6 +37,7 @@ export function SiteHeader() {
         </Link>
         <nav className="flex flex-wrap items-center gap-x-6 gap-y-2 font-sans text-[15px]">
           <Link href="/#journeys" className="text-ivory no-underline hover:text-gold">Journeys</Link>
+          <Link href="/departures" className="text-ivory no-underline hover:text-gold">Departures</Link>
           <Link href="/#tiers" className="text-ivory no-underline hover:text-gold">Pricing</Link>
           <Link href="/stories" className="text-ivory no-underline hover:text-gold">Stories</Link>
           <Link href="/partners" className="text-ivory no-underline hover:text-gold">Partners</Link>
@@ -60,6 +61,7 @@ export function SiteFooter() {
         </div>
         <div className="flex flex-wrap gap-5 items-center">
           <Link href="/#journeys" className="text-mist hover:text-gold">Journeys</Link>
+          <Link href="/departures" className="text-mist hover:text-gold">Group departures</Link>
           <Link href="/onboarding" className="text-mist hover:text-gold">Design My Trip</Link>
           <Link href="/stories" className="text-mist hover:text-gold">Stories</Link>
           <Link href="/partners" className="text-mist hover:text-gold">Become a partner</Link>

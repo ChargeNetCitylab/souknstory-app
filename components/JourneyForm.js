@@ -5,8 +5,13 @@ import { supabase } from "@/lib/supabaseClient";
 import { JOURNEYS, TIERS } from "@/lib/journeys";
 import { SITE, whatsappLink } from "@/lib/site";
 import { inputClass, labelClass } from "@/components/site";
+import { formatDate, addDays } from "@/lib/departures";
 
-const THEMES = [...JOURNEYS.map((j) => ({ value: j.slug, label: j.title })), { value: "tailor-made", label: "Something tailor-made" }];
+const THEMES = [
+  { value: "first-story", label: "The First Story (small group)" },
+  ...JOURNEYS.map((j) => ({ value: j.slug, label: j.title })),
+  { value: "tailor-made", label: "Something tailor-made" },
+];
 const CABINS = [
   ["economy", "Economy", "Best value"],
   ["premium", "Premium economy", "More space"],
@@ -43,6 +48,8 @@ function Step({ n, title, children }) {
 export default function JourneyForm() {
   const params = useSearchParams();
   const preset = params.get("journey");
+  const departureParam = params.get("departure");
+  const departure = /^\d{4}-\d{2}-\d{2}$/.test(departureParam || "") ? departureParam : null;
   const [f, setF] = useState({
     journey: THEMES.some((t) => t.value === preset) ? preset : "",
     departure_city: "",
@@ -74,6 +81,7 @@ export default function JourneyForm() {
     setStatus("sending");
     const { error: dbError } = await supabase.from("journey_requests").insert({
       ...f,
+      ...(departure ? { departure_date: departure } : {}),
       adults: f.adults ? Number(f.adults) : null,
       children: f.children ? Number(f.children) : null,
     });
@@ -104,6 +112,17 @@ export default function JourneyForm() {
 
   return (
     <form onSubmit={submit} className="flex flex-col gap-10" noValidate>
+      {departure && (
+        <div className="bg-white border border-line p-5 flex flex-wrap justify-between items-center gap-3">
+          <div className="flex flex-col">
+            <span className="text-xs tracking-[0.16em] uppercase text-brass font-semibold">Your departure</span>
+            <span className="font-serif font-semibold text-[26px]">
+              The First Story · {formatDate(departure)} – {formatDate(addDays(departure, 7), { month: "short", day: "numeric", year: "numeric" })}
+            </span>
+          </div>
+          <a href="/departures#calendar" className="text-brass font-semibold">Change date</a>
+        </div>
+      )}
       <Step n={1} title="Which story calls you?">
         <div className="flex flex-wrap gap-2.5">
           {THEMES.map((t) => (
