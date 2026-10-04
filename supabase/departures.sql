@@ -1,6 +1,7 @@
 -- Souk N Story: weekly departure calendar for The First Story.
 -- Run once in Supabase: SQL Editor → New query → paste → Run.
--- Then manage seats in Table Editor → departures (edit seats_booked or status).
+-- Then manage seats in Table Editor → departures (edit seats_booked or status),
+-- and paste each date's WeTravel link into booking_url.
 
 create table if not exists public.departures (
   id uuid primary key default gen_random_uuid(),
@@ -12,8 +13,11 @@ create table if not exists public.departures (
   status text not null default 'open' check (status in ('open', 'guaranteed', 'full', 'cancelled')),
   founding boolean not null default false,
   note text,
+  booking_url text, -- WeTravel booking page for this date; Reserve goes there when set
   unique (product, start_date)
 );
+
+alter table public.departures add column if not exists booking_url text;
 
 alter table public.departures enable row level security;
 

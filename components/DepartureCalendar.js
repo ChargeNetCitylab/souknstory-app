@@ -84,6 +84,10 @@ export default function DepartureCalendar() {
                       <Link href={`/onboarding?journey=first-story&departure=${d.start_date}`} className="inline-block border border-night text-night px-5 py-3 font-medium no-underline">
                         Join waitlist
                       </Link>
+                    ) : d.booking_url && /^https:\/\//.test(d.booking_url) ? (
+                      <a href={d.booking_url} className="inline-block bg-night text-ivory px-5 py-3 font-semibold no-underline hover:bg-brass">
+                        Reserve · $500 deposit
+                      </a>
                     ) : (
                       <Link href={`/onboarding?journey=first-story&departure=${d.start_date}`} className="inline-block bg-night text-ivory px-5 py-3 font-semibold no-underline hover:bg-brass">
                         Reserve
